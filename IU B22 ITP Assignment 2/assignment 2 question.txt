@@ -1,0 +1,382 @@
+A. Assignment 2
+time limit per test
+1 second
+memory limit per test
+256 megabytes
+input
+input.txt
+output
+output.txt
+
+Harry Polis, Hermione Grannopark, Ron Weasinno and others from Hogwartolis applied to Innopolis University and got accepted, and when they reached Innopolis they saw people coding and doing things that are similar to magic like solving assignments and exercises from ITP course. So, they decided to teach the students magic and then they created their own club for magic. However, friends were unable to choose the club head and decided to ask other students for assistance. For this students created teams and each team chose their unique favorite magician. The teams decided to compete between each other by playing a duel with multiple teams playing simultaneously. The winning team's choice of the club head should become the solution for the game. Help students to play the game by using mysterious C code. Let the magic begin!
+
+In the input.txt file you will have the following content separated by a new line:
+The number N
+(1≤N≤10), which is the number of teams in the game.
+N lines, each line should contain a unique magician name with length L (2≤L≤20) made of only English letters and should begin with capital letter. Each of those magician names should correspond to the team number from 0 till N−1, which was chosen by this team to become the head of the club.
+
+The number of the players M
+(N≤M≤100). After this you will have M∗4 lines, each line will represent a player i information:
+
+    The unique name of the player namei
+
+with length L (2≤L≤20) should contain only English letters and begin with capital letter.
+Team number for this player ti
+(0≤ti<N).
+The power of the player pi
+(0≤pi≤1000), which is integer value.
+The visibility of the player vi
+(True/False). 
+
+Sequence of actions for players S
+(0≤S≤1000) followed on the same line by 1 or 2 player names separated by single spaces. Not each player is guaranteed to have actions. Next actions are applicable:
+attack namei namej if pi>pj, then playeri will gain pi−pj power and playerj will have no power left and further will be called frozen.
+if pi<pj, then playeri will be frozen and playerj will gain pj−pi power. if pi=pj , then both players will be frozen. if playerj is not visible, then the playeri
+
+    will be frozen. 
+
+flip_visibility
+namei will flip the status of the visibility of the playeri
+.
+
+heal
+namei namej will make playeri give half (ceil the numbers up for both players if needed) of his power to playerj
+(from the same team).
+
+super
+namei namej will create a super player instead of existing 2 players (from the same team) with joint power and actions. The power will be pi+pj (sum at most 1000, a greater sum should be floored down to 1000) and the visibility will be True and the name assigned to super player will be S_k, where k is the index of super player (k begins with 0
+
+        and increments for each next new created super player).
+
+A frozen player can be healed
+, then this player will be unfrozen. A player with visibility equal to False can be healed. A frozen playerj can be in the action in super namei namej. A playerj with visibility equal to False can be in the action in super namei namej
+
+.
+
+You might have a team with zero players, but it is guaranteed that all players have assigned teams.
+
+The cases when you cannot perform the actions, but they should not stop the game and the actions should be ignored:
+
+    If a player with the visibility equal to False
+
+tries to make any action other than flip_visibility
+, then the next warning message should be added to the output file: "This player can't play".
+If a frozen player tries to make an action, then the next warning message should be added to the output file: "This player is frozen".
+In case of heal
+or super
+action, if players are from different teams, then the next warning message should be added to the output file: "Both players should be from the same team".
+The player shouldn't be able to heal
+itself, in this case in the output file the next warning message should be added: "The player cannot heal itself".
+If during creation of a super
+player the playeri unites with playeri
+
+    , then the next warning message should be added to the output file: "The player cannot do super action with itself".
+
+    If multiple described errors happen for a single action, print ONLY the first one of them in the order given above. 
+
+The input file has to be read until the end and all actions have to be performed sequentially.
+
+At the end of the output file the next message should be added: "The chosen wizard is #team's_wizard" (the wizard of the team which has the greatest power left which is the sum of all the team members' powers). If more than 1 team has the greatest power the output file should contain a different message, which is: "It's a tie".
+
+The input.txt file may contain invalid inputs, which has to be detected and reported in the output.txt file with the only error message "Invalid inputs". If the output file already contains some other previous messages, everything has to be replaced by an error message.
+
+P.S.: It is guaranteed that magicians' and players' names are not intersecting in the same test, i.e. you should not expect the input with the player and magician having the same name.
+
+P.P.S.: You have to use structure(s) for this assignment
+Examples
+Input
+
+5
+Harry
+Hermione
+Ron
+Draco
+Ginny
+5
+Munir
+0
+1000
+True
+Alaa
+1
+500
+True
+Mohamad
+2
+650
+True
+Alexandr
+3
+800
+True
+Mikhail
+4
+900
+True
+flip_visibility Alaa
+attack Mohamad Alexandr
+attack Munir Mikhail
+attack Munir Alexandr
+attack Munir Alaa
+
+Output
+
+The chosen wizard is Hermione
+
+Input
+
+4
+Harry
+Hermione
+Ron
+Draco
+8
+Gary
+0
+800
+True
+Ronald
+0
+650
+False
+Sybill
+1
+350
+True
+Padma
+1
+900
+True
+Hengist
+2
+190
+False
+Bridget
+2
+589
+True
+Darco
+3
+950
+True
+MARCUS
+3
+469
+True
+attack Gary MARCUS
+attack Darco Ronald
+attack Darco Bridget
+flip_visibility Bridget
+attack Padma Gary
+
+Output
+
+This player is frozen
+The chosen wizard is Harry
+
+Input
+
+5
+Harry
+Hermione
+Ron
+Draco
+Ginny
+5
+Munir
+0
+1000
+True
+Alaa
+1
+500
+True
+Mohamad
+2
+650
+True
+Alexandr
+3
+800
+True
+Mikhail
+4
+900
+True
+flip_visibility Alaa
+attack Mohamad Alexandr
+attack Munir Mikhail
+attack Alaa Munir
+attack Mikhail Munir
+super Mikhail Alaa
+attack Munir Alexandr
+attack Munir Alaa
+heal Munir Alaa
+
+Output
+
+This player can't play
+This player is frozen
+This player is frozen
+This player is frozen
+The chosen wizard is Hermione
+
+Input
+
+5
+Harry
+Hermione
+Ron
+Draco
+Ginny
+5
+Munir
+0
+1000
+True
+Alaa
+1
+1000
+True
+Mohamad
+2
+650
+True
+Alexandr
+3
+800
+True
+Mikhail
+4
+900
+True
+attack Mohamad Alexandr
+attack Munir Mikhail
+attack Munir Alexandr
+attack Munir Alaa
+
+Output
+
+It's a tie
+
+Input
+
+5
+harry
+Hermione
+Ron
+Draco
+Ginny
+5
+Munir
+0
+1000
+True
+Alaa
+1
+1000
+True
+Mohamad
+2
+650
+True
+Alexandr
+3
+800
+True
+Mikhail
+4
+900
+True
+attack Mohamad Alexandr
+attack Munir Mikhail
+attack Munir Alexandr
+attack Munir Alaa
+
+Output
+
+Invalid inputs
+
+Input
+
+2
+Harry
+Hermione
+5
+Munir
+0
+1000
+True
+Alaa
+1
+499
+True
+Mohamad
+1
+650
+True
+Alexandr
+1
+250
+True
+Mikhail
+1
+250
+True
+attack Munir Mohamad
+heal Munir Mohamad
+heal Alaa Mohamad
+super Alaa Mohamad
+super S_0 Alexandr
+super S_1 Mikhail
+attack Munir S_2
+
+Output
+
+Both players should be from the same team
+It's a tie
+
+Input
+
+3
+Harry
+Hermione
+Darko
+5
+Munir
+0
+1000
+True
+Alaa
+1
+499
+True
+Mohamad
+1
+650
+True
+Alexandr
+1
+250
+True
+Mikhail
+2
+0
+False
+attack Munir Mohamad
+heal Munir Mohamad
+heal Alaa Mohamad
+super Alaa Mohamad
+super S_0 Alexandr
+attack Munir S_1
+super Mikhail Munir
+
+Output
+
+Both players should be from the same team
+This player can't play
+The chosen wizard is Harry
+
+Note
+
+Make sure to insert one newline ("\n") character after the last name written in the input and output.
