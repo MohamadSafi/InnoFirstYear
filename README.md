@@ -50,7 +50,7 @@
   
       
   <p align="center">
-  <img src="./IMG/Assignment4pic.png" alt="Size Limit CLI" width="738">
+  <img src="./IMG/Assignment4moves.png" alt="Size Limit CLI" width="738">
 </p>
   
       
