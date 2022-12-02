@@ -1,0 +1,82 @@
+A. Assignment 3
+time limit per test1 second
+memory limit per test256 megabytes
+inputstandard input
+outputstandard output
+Note: Submit the solution using the Java 8 (Java 1.8.0_241) language version.
+
+In this assignment you will need to design a family of calculators using OOP principles. The UML class diagram demonstrates the minimal set of classes which you should implement, you can extend this functionality as you wish. You are NOT allowed to modify the names or signatures of UML diagram classes, methods and fields.
+The Assignment UML class diagram.
+The first line of standard input should contain one of three words: DOUBLE, INTEGER, STRING. The next line will contain the integer number N (1≤N≤50) defining the total amount of commands. After that, the input will always contain exactly N lines with commands calculator should perform:
+
+The "+" command means the calculator should either sum up two numbers or concatenate two strings, and print the result to the output.
+The "−" command means the calculator should either subtract two numbers and print the result to the output, or print "Unsupported operation for strings".
+The "∗" command means calculator should either multiply two numbers and print the result to the screen, or for strings, it should repeat the first argument amount of times given in the second argument (a positive integer number), otherwise print "Wrong argument type".
+The "/" command means the calculator should either divide two numbers and print the result to the output or print "Unsupported operation for strings".
+Any operation for DOUBLE or INTEGER calculators that will contain inapplicable symbols as operands, should print "Wrong argument type" and continue work with the next operation.
+
+For any other inapplicable operation, the message "Wrong operation type" should be printed to the output.
+
+In case of wrong calculator type on the first line, the output should contain only "Wrong calculator type". In case when the specified number of commands is incorrect, the output should contain only "Amount of commands is Not a Number" and exit from the program.
+
+In case when the calculator tries to divide by zero, the output should contain only "Division by zero" and continue work with the next operation.
+
+Examples
+
+DOUBLE
+3
++ 1 1.5
+- 0 8
+/ 1 3
+
+2.5
+-8.0
+0.3333333333333333
+
+INTEGER
+3
+* 1 6
+/ 8 3
++ 4 5
+
+6
+2
+9
+
+STRING
+3
++ aa bb
+* aB 3
++ A B
+
+aabb
+aBaBaB
+AB
+
+STRING
+6
++ aa bb
+* aB 3
+- aB Ab
+* aaaa bbbb
+* aa 3.5
++ A B
+
+aabb
+aBaBaB
+Unsupported operation for strings
+Wrong argument type
+Wrong argument type
+AB
+
+double
+0
+
+Wrong calculator type
+
+Note
+Make sure to insert one newline ("\n") character after each line written to the standard output.
+
+For this assignment you need to work with console for reading inputs and printing outputs, not with files.
+
+
