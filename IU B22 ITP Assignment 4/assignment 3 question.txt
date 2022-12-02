@@ -1,0 +1,108 @@
+A. Assignment 4
+time limit per test1 second
+memory limit per test512 megabytes
+inputinput.txt
+outputoutput.txt
+You are asked to implement a program that applies custom chess rules and comes up with the results. The rules you are asked to apply are not exactly the same as the classic chess game. You need to follow the UML class diagram given below.
+
+LINK TO THE DIAGRAM : https://shorturl.at/abzI4
+
+The rules for each chess piece are the following:
+
+Pawn: White pawns can only move up, black pawns can only move down. In addition, a pawn moves one square, if that square is vacant. It cannot capture the opponent's piece which exists in front of it but it can capture the pieces which are on its forward diagonals
+Bishop: The bishop has no restrictions in distance for each move but is limited to diagonal movement. It cannot jump over other pieces. A bishop captures enemy pieces by occupying the square on which an enemy piece stands.
+Knight: The only piece in chess that can jump over another piece. It moves one cell left or right horizontally and then two cells up or down vertically, OR it moves two cells left or right horizontally and then one square up or down vertically — in other words, the knight moves in an "L-shape." The knight can only capture opponent pieces standing on position it lands on, NOT what it jumps over!
+Rook: It may move any number of squares horizontally or vertically without jumping over other pieces, and it may capture an enemy piece on its path. An easy way to remember how a rook can move is that it moves like a "+" sign.
+Queen: It can move any number of squares vertically, horizontally or diagonally without jumping in any case. An easy way to remember how a queen can move is that it moves like a rook and a bishop combined! The queen may capture an enemy piece on its path.
+King: It may move to any adjoining square and it can capture any opponent's piece in any adjacent square, i.e. we treat the king like a normal chess piece in terms of movement, capturing and being captured)
+For this assignment you will have an N∗N square chess board, you will have M pieces on the board. There can be any number (from 0 to M−2) of pieces of any type except the king. On the other hand, there should always be one and only one king per player for a game to be valid. In addition, each square should contain at most one chess piece.
+
+The chess board is numbered vertically from 1 to N bottom to top and horizontally from 1 to N left to right.
+
+Input
+The input file (input.txt) consists of N (3≤N≤1000), the chess board size, followed on the next line by M (2≤M≤N2), the number of pieces on the board. Next M lines should follow the next format:
+
+PieceTypei Colori Xi Yi
+
+where:
+
+PieceTypei represents the type of the i'th piece and should be a string from the following set: {"Pawn", "King", "Knight", "Rook", "Queen", "Bishop"}
+Colori represents if the i'th piece is colored white or black and should be from the following set {"White", "Black"}
+Xi represents the horizontal position of the i'th piece on the board and should be a positive integer number in the range [1,N]
+Yi represents the Vertical position of the i'th piece on the board and should be a positive integer number in the range [1,N]
+Output
+The output file (output.txt) should consist of the M lines in the following format (unless there is an error) corresponding to the piece entered in the same order given in the input (first line represents the first piece entered, second line represents the second piece entered and so on)
+
+Pi Ki
+where:
+
+Pi is the number of possible moves the i'th piece can make from the same cell supposing that it's the turn of the player who owns this piece (including captures). Consider that your moves are independent, so you technically have moves in parallel
+Ki is the number of captures the i'th piece can potentially do from the same cell. Consider that your captures are independent, so you technically have captures in parallel
+For invalid inputs you should use user-defined exceptions to handle errors and report their messages using the overridden getMessage() method. You should report errors by handling their relevant exceptions and report that exception message in the following priority order:
+
+Invalid board size
+Invalid number of pieces
+Invalid piece name
+Invalid piece color
+Invalid piece position
+Invalid given Kings
+Invalid input
+The last exception works for cases, only if previous 6 exceptions were NOT caught. Uncaught exceptions will get you a runtime error getting you a zero for the test. After handling the exception, the program should terminate without throwing any exceptions. In addition, you have to use all the exception classes in your program to handle errors and you can throw and catch those exceptions wherever you find suitable to your implementation.
+
+Examples
+inputCopy
+3
+2
+King White 1 1
+King Black 2 2
+outputCopy
+3 1
+8 1
+inputCopy
+8
+6
+King White 4 8
+King Black 6 5
+Queen White 3 6
+Rook White 3 2
+Pawn Black 7 2
+Pawn Black 8 1
+outputCopy
+5 0
+8 0
+22 1
+10 1
+1 0
+0 0
+inputCopy
+8
+4
+King White 5 1
+King Black 5 8
+Knight White 5 3
+Rook Black 1 1
+outputCopy
+5 0
+5 0
+8 0
+11 1
+inputCopy
+8
+5
+King White 5 1
+King Black 5 8
+King Black 5 7
+Knight White 5 3
+Rook Black 1 1
+outputCopy
+Invalid given Kings
+inputCopy
+4
+3
+King White 1 1
+Foobar White 2 1
+King Foobar 2 2
+outputCopy
+Invalid piece name
+Note
+Make sure to insert one newline ("\n") character after each line written to the output.txt.
